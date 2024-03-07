@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Photo;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -54,7 +55,8 @@ class PhotoController extends Controller
     function detail($id_photo){
         $photo = Photo::find($id_photo);
         $comments = Comment::where('id_photo', $id_photo)->get();
-        return view('frontend.photo-page', compact('photo', 'comments'));
+        $likeCount = Like::where('id_photo', $id_photo)->count();
+        return view('frontend.photo-page', compact('photo', 'comments', 'likeCount'));
     }
 
     public function edit($id_photo)

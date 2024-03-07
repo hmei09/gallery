@@ -82,6 +82,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="jumlah-like">{{ $likeCount }} </div>
+                            <div class="like d-flex justify-content-between">
+                                <form action="{{ route('like.store') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="id_photo" value="{{ $photo->id_photo }}">
+                                    <button type="submit" class="btn btn-{{ $photo->isLikedBy(auth()->id()) ? 'primary' : 'danger' }}">
+                                        <i class="fas fa-heart"></i>
+                                        {{ $photo->isLikedBy(auth()->id()) ? 'Unlike' : 'Like' }}
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                         <form action="{{ route('comment.store') }}" method="post" class="my-4">
                             @csrf
                             <div class="row">

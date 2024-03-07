@@ -3,6 +3,7 @@
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,6 +49,13 @@ Route::middleware('auth')->group(function () {
 
     //comment
     Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+
+    // like CRD
+    Route::post('/like', [LikeController::class, 'like'])->name('like.store');
+    Route::post('/unlike', [LikeController::class, 'unlike'])->name('like.delete');
+
+    // Tes
+    // Route::get('like/test', [PhotoController::class, 'like'])->name('photo.like');
 
 });
 

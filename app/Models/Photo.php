@@ -22,5 +22,18 @@ class Photo extends Model
     public function comment() {
         return $this->hasMany(Comment::class);
     }   
+    public function like() {
+        return $this->hasMany(Like::class);
+    }   
+
+    public function isLikedBy($userId)
+{
+    return $this->likes->contains('id', $userId);
+}
+
+public function likes()
+{
+    return $this->hasMany(Like::class, 'id_photo');
+}
     
 }
